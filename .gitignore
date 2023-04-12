@@ -1,0 +1,6 @@
+venv/
+.env
+dcrm/dcrm/__pycache__/
+dcrm/website/__pycache__/
+dcrm/website/migrations/__pycache__/
+mydb.py
