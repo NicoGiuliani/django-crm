@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm, AddRecordForm
 from .models import Customer
 
 
@@ -74,4 +74,19 @@ def delete_record(request, pk):
             return redirect("home")
     else:
         messages.warning(request, "You must be logged in to delete user records")
+        return redirect("home")
+
+
+def add_record(request):
+    form = AddRecordForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            if form.is_valid():
+                add_record = form.save()
+                messages.success(request, "New customer has been added")
+                return redirect("home")
+
+        return render(request, "new_customer.html", {"form": form})
+    else:
+        messages.info(request, "You must be logged in to add new customers")
         return redirect("home")
