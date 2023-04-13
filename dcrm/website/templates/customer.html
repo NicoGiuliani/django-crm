@@ -15,6 +15,7 @@
 </div>
 
 <a class="btn btn-dark me-3" href="{% url 'home' %}">Back</a>
+<a class="btn btn-info me-3" href="{% url 'update' customer.id %}">Update</a>
 <a class="btn btn-danger me-3" href="{% url 'delete' customer.id %}">Delete</a>
 
 {% endblock %}
